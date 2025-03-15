@@ -1,0 +1,175 @@
+.tenantView {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: "Arial", sans-serif;
+  padding-bottom: 50px;
+
+  .header {
+    background: linear-gradient(to right, #007bff, #003c8f);
+    color: #fff;
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      span {
+        color: #ffd700;
+      }
+    }
+  }
+  .headingProfile {
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .profiles {
+    display: flex;
+    gap: 1em;
+  }
+  .Heading {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+  }
+
+  .searchSection {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .searchInput {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .searchButton {
+      height: 56px;
+      padding: 0 20px;
+    }
+  }
+
+  .projects {
+    text-align: center;
+    margin-top: 40px;
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .projectList {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .projectCard {
+        cursor: pointer;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: 0.3s;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+          font-size: 18px;
+          margin-top: 10px;
+          color: #333;
+        }
+
+        p {
+          font-size: 14px;
+          color: #777;
+          margin-top: 5px;
+        }
+
+        img {
+          width: 100%; /* Makes the image take full width of the container */
+          height: 200px; /* Ensures the height matches the width, making it square */
+          object-fit: cover; /* Ensures the image covers the square without distortion */
+          border-radius: 8px; /* Optional: rounded corners */
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .searchSection {
+    flex-direction: column;
+    align-items: stretch;
+    width: 95%;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .projects .projectList {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+.MuiDialog-paper {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+
+  .MuiDialogTitle-root {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+  }
+
+  .MuiDialogContent-root {
+    text-align: center;
+    padding: 15px;
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
+    }
+  }
+
+  .MuiDialogActions-root {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    button {
+      background: #007bff;
+      color: white;
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+}
+

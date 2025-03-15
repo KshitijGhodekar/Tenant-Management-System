@@ -1,0 +1,73 @@
+.profileContainer {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .profileHeader {
+    position: relative;
+    padding: 20px;
+  }
+  
+  .profileImageWrapper {
+    position: relative;
+  }
+  
+  .profileImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+  
+  .profileImageInput {
+    margin-top: 10px;
+  }
+  
+  .profileName {
+    margin: 10px 0;
+  }
+  
+  .goldMembershipBadge {
+    background: gold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .profileDetails {
+    margin: 20px 0;
+  }
+  
+  .editForm .formGroup {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .profileInput {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  .saveButton {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .profileActions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .editButton {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
