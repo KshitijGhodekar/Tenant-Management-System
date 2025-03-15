@@ -1,17 +1,5 @@
 import { useState } from "react";
-import {
-  TextField,
-  Button,
-  Card,
-  CardContent,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Checkbox,
-  FormControlLabel,
-} from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import {
   BarChart,
   Bar,
@@ -26,11 +14,12 @@ import {
 } from "recharts";
 import "./LandLordView.scss";
 import { Grid2 } from "@mui/material";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import LandlordProfile from "../LandlordProfile/LandlordProfile";
+import AddPropertyForm from "./AddProperty/AddPropertyPage";
 
 const LandlordView = () => {
-  const [properties, setProperties] = useState([
+  const properties = ([
     {
       id: 1,
       name: "Downtown Heights",
@@ -72,51 +61,11 @@ const LandlordView = () => {
       furnished: false,
     },
   ]);
-
-  const [newProperty, setNewProperty] = useState({
-    name: "",
-    Rent: "",
-    rented: false,
-    type: "",
-    bedrooms: "",
-    location: "",
-    furnished: false,
-  });
   const [activeSection, setActiveSection] = useState("dashboard");
   const navigate = useNavigate();
   const logout = () => {
+    localStorage.removeItem("jwtToken");
     navigate("/");
-  };
-
-  const handleAddProperty = () => {
-    if (
-      newProperty.name &&
-      newProperty.Rent &&
-      !isNaN(newProperty.Rent) &&
-      newProperty.type &&
-      newProperty.bedrooms &&
-      newProperty.location
-    ) {
-      setProperties([
-        ...properties,
-        {
-          ...newProperty,
-          id: properties.length + 1,
-          Rent: Number(newProperty.Rent),
-        },
-      ]);
-      setNewProperty({
-        name: "",
-        Rent: "",
-        rented: false,
-        type: "",
-        bedrooms: "",
-        location: "",
-        furnished: false,
-      });
-    } else {
-      alert("Please provide valid property details");
-    }
   };
 
   const totalRent = properties
@@ -167,11 +116,7 @@ const LandlordView = () => {
           >
             Profile
           </li>
-          <li
-            onClick={() => logout()}
-          >
-            Logout
-          </li>
+          <li onClick={() => logout()}>Logout</li>
         </ul>
       </div>
 
@@ -308,94 +253,7 @@ const LandlordView = () => {
           </div>
         )}
 
-        {activeSection === "addProperty" && (
-          <div className="addProperty">
-            <h3>Add New Property</h3>
-            <TextField
-              label="Property Name"
-              variant="outlined"
-              fullWidth
-              value={newProperty.name}
-              onChange={(e) =>
-                setNewProperty({ ...newProperty, name: e.target.value })
-              }
-            />
-            <TextField
-              label="Rent Amount (€)"
-              variant="outlined"
-              fullWidth
-              type="number"
-              value={newProperty.Rent}
-              onChange={(e) =>
-                setNewProperty({ ...newProperty, Rent: e.target.value })
-              }
-            />
-            <FormControl fullWidth variant="outlined" sx={{ marginTop: 2 }}>
-              <InputLabel>Property Type</InputLabel>
-              <Select
-                value={newProperty.type}
-                onChange={(e) =>
-                  setNewProperty({ ...newProperty, type: e.target.value })
-                }
-                label="Property Type"
-              >
-                <MenuItem value="Apartment">Apartment</MenuItem>
-                <MenuItem value="House">House</MenuItem>
-                <MenuItem value="Condo">Condo</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField
-              label="Number of Bedrooms"
-              variant="outlined"
-              fullWidth
-              type="number"
-              value={newProperty.bedrooms}
-              onChange={(e) =>
-                setNewProperty({ ...newProperty, bedrooms: e.target.value })
-              }
-              sx={{ marginTop: 2 }}
-            />
-            <TextField
-              label="Location"
-              variant="outlined"
-              fullWidth
-              value={newProperty.location}
-              onChange={(e) =>
-                setNewProperty({ ...newProperty, location: e.target.value })
-              }
-              sx={{ marginTop: 2 }}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={newProperty.furnished}
-                  onChange={(e) =>
-                    setNewProperty({
-                      ...newProperty,
-                      furnished: e.target.checked,
-                    })
-                  }
-                />
-              }
-              label="Is Furnished?"
-              sx={{ marginTop: 2 }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddProperty}
-              disabled={
-                !newProperty.name ||
-                !newProperty.Rent ||
-                !newProperty.type ||
-                !newProperty.bedrooms ||
-                !newProperty.location
-              }
-            >
-              Add Property
-            </Button>
-          </div>
-        )}
+        {activeSection === "addProperty" && <AddPropertyForm />}
 
         {activeSection === "listings" && (
           <div className="listings">

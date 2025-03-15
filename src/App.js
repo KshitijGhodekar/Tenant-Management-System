@@ -1,22 +1,63 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import { LoginPage } from './Pages/Login/LoginPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import TenantView from './Pages/TenantView/TenantView';
-import TenantProfile from './Pages/TenantProfile/TenantProfile';
-import LandlordView from './Pages/LandlordView/LandLoardView';
+import React, { Suspense } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import { LoginPage } from "./Pages/Login/LoginPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import TenantProfile from "./Pages/TenantProfile/TenantProfile";
 
+const TenantView = React.lazy(() => import("./Pages/TenantView/TenantView"));
+const LandlordView = React.lazy(() => import("./Pages/LandlordView/LandLoardView") );
+const PaymentPage = React.lazy(() => import("./Pages/PaymentPage/PaymentPage") );
+
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("jwtToken");
+  if (!token) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path='/tenant-view' element={<TenantView />} />
-        <Route path='/tenant-profile' element={<TenantProfile />} />
-        <Route path='/landlord-view' element={<LandlordView />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route
+              path="/tenant-view"
+              element={
+                <ProtectedRoute>
+                  <TenantView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tenant-profile"
+              element={
+                <ProtectedRoute>
+                  <TenantProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/landlord-view"
+              element={
+                <ProtectedRoute>
+                  <LandlordView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentPage />
+              </ProtectedRoute>
+            }
+          />
+          </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

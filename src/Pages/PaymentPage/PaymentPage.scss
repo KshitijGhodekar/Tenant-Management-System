@@ -1,0 +1,116 @@
+.payment-page {
+    padding: 40px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .section-title {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+  
+    .property-details,
+    .payment-details {
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+    }
+  
+    .property-image {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .property-name {
+      font-weight: 700;
+      color: #34495e;
+      margin-top: 15px;
+      font-size: 22px;
+    }
+  
+    .property-description {
+      font-size: 16px;
+      color: #7f8c8d;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+  
+    .property-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #27ae60;
+      margin-top: 20px;
+    }
+  
+    .form-control {
+      margin-bottom: 20px;
+  
+      .MuiOutlinedInput-root {
+        border-radius: 10px;
+      }
+    }
+  
+    .pay-now-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      background-color: #3498db;
+      color: #fff;
+      border-radius: 10px;
+      text-transform: none;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #2980b9;
+      }
+    }
+  
+    .cancel-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      background-color: #e74c3c;
+      color: #fff;
+      border-radius: 10px;
+      text-transform: none;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  
+    .confirmation-dialog {
+      .dialog-title {
+        font-weight: 700;
+        color: #2c3e50;
+        font-size: 24px;
+      }
+  
+      .dialog-content {
+        font-size: 18px;
+        color: #555;
+        text-align: center;
+        line-height: 1.6;
+      }
+  
+      .MuiDialogActions-root {
+        justify-content: center;
+      }
+    }
+  }

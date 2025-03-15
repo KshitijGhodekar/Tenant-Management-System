@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { TextField, MenuItem, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Button, TextField, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import PropertyDetails from "./PropertyDetails";
+import Booking from "./Booking";
+import CloseIcon from "@mui/icons-material/Close";
 import "./TenantView.scss";
 
 const TenantView = () => {
@@ -68,12 +71,12 @@ const TenantView = () => {
       image: require("./images.jpeg"),
       description: "A luxurious residence with panoramic views, top-tier amenities, and modern interiors."
     },
-];
-
+  ];
 
   const logout = () => {
     navigate("/");
   };
+
   const profile = () => {
     navigate("/tenant-profile");
   };
@@ -84,6 +87,15 @@ const TenantView = () => {
 
   const closePropertyDetails = () => {
     setSelectedProperty(null);
+  };
+
+  const handleBooking = () => {
+    navigate("/payment", { state: { selectedProperty } });
+  };
+
+  const handleExpressInterest = () => {
+    alert("Your interest has been noted.");
+    closePropertyDetails();
   };
 
   return (
@@ -174,21 +186,12 @@ const TenantView = () => {
         </div>
       </section>
 
-      <Dialog open={Boolean(selectedProperty)} onClose={closePropertyDetails}>
-        {selectedProperty && (
-          <>
-            <DialogTitle>{selectedProperty.name}</DialogTitle>
-            <DialogContent>
-              <img src={selectedProperty.image} alt={selectedProperty.name} style={{ width: "100%", borderRadius: "8px" }} />
-              <p>{selectedProperty.price} per month</p>
-              <p>{selectedProperty.description}</p>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={closePropertyDetails} color="primary">Close</Button>
-            </DialogActions>
-          </>
-        )}
-      </Dialog>
+      <PropertyDetails
+        selectedProperty={selectedProperty}
+        closePropertyDetails={closePropertyDetails}
+        handleBooking={handleBooking}
+        handleExpressInterest={handleExpressInterest}
+      />
     </div>
   );
 };

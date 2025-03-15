@@ -7,11 +7,21 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const handleSubmit = async () => {
+    if (!validateEmail(credentials.email)) {
+      alert("Invalid email format");
+      return;
+    }
+
     try {
-      const result = await login(credentials.email, credentials.password);
-      console.log("Results",result)
-      if (result === "Login successful!") {
+      const token = await login(credentials.email, credentials.password);
+      if (token) {
+        localStorage.setItem("jwtToken", token);
         if (credentials.password === "tenant") {
           navigate("/tenant-view");
         } else if (credentials.password === "landlord") {
@@ -22,9 +32,12 @@ export const LoginPage = () => {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("An error occurred during login. Please try again."); 
+      alert("An error occurred during login. Please try again.");
     }
   };
+
+  const isLoginDisabled =
+    !validateEmail(credentials.email) || credentials.password.trim() === "";
 
   return (
     <div className="loginPage">
@@ -54,7 +67,6 @@ export const LoginPage = () => {
             }
           />
         </div>
-
         <div className="inputGroup">
           <label>Password</label>
           <input
@@ -69,11 +81,11 @@ export const LoginPage = () => {
             }
           />
         </div>
-
         <div className="loginButtons">
           <button
             className="loginButton"
             onClick={handleSubmit}
+            disabled={isLoginDisabled}
           >
             Login
           </button>
