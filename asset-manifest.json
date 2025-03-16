@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/Tenant-Management-System-FE/static/css/main.6c6ac573.css",
+    "main.js": "/Tenant-Management-System-FE/static/js/main.f180793c.js",
+    "static/css/10.624daf68.chunk.css": "/Tenant-Management-System-FE/static/css/10.624daf68.chunk.css",
+    "static/js/10.b42e95ef.chunk.js": "/Tenant-Management-System-FE/static/js/10.b42e95ef.chunk.js",
+    "static/css/920.69711d22.chunk.css": "/Tenant-Management-System-FE/static/css/920.69711d22.chunk.css",
+    "static/js/920.0d6a0970.chunk.js": "/Tenant-Management-System-FE/static/js/920.0d6a0970.chunk.js",
+    "static/css/740.9749c99a.chunk.css": "/Tenant-Management-System-FE/static/css/740.9749c99a.chunk.css",
+    "static/js/740.d9817a40.chunk.js": "/Tenant-Management-System-FE/static/js/740.d9817a40.chunk.js",
+    "static/js/453.8d4fb4ac.chunk.js": "/Tenant-Management-System-FE/static/js/453.8d4fb4ac.chunk.js",
+    "static/js/276.c63c367a.chunk.js": "/Tenant-Management-System-FE/static/js/276.c63c367a.chunk.js",
+    "static/js/65.d32656ea.chunk.js": "/Tenant-Management-System-FE/static/js/65.d32656ea.chunk.js",
+    "static/js/978.fdd393f0.chunk.js": "/Tenant-Management-System-FE/static/js/978.fdd393f0.chunk.js",
+    "static/media/Profile.png": "/Tenant-Management-System-FE/static/media/Profile.48d8abce9b45d1ba8ad9.png",
+    "static/media/Appartment.jpg": "/Tenant-Management-System-FE/static/media/Appartment.bf7dd9de5ffeb6b681fe.jpg",
+    "static/media/Newyork Appartment.jpg": "/Tenant-Management-System-FE/static/media/Newyork Appartment.274266f86b2fd4d3a1db.jpg",
+    "static/media/Tenant.jpg": "/Tenant-Management-System-FE/static/media/Tenant.23b3cae4276e31fe8dbb.jpg",
+    "static/media/Landlord.jpg": "/Tenant-Management-System-FE/static/media/Landlord.8f5d2357dc6500819d01.jpg",
+    "static/media/Flat2.png": "/Tenant-Management-System-FE/static/media/Flat2.8d36c5e89087f2087c25.png",
+    "static/media/Property1.png": "/Tenant-Management-System-FE/static/media/Property1.76b09968eb159f738eb6.png",
+    "static/media/Property3.png": "/Tenant-Management-System-FE/static/media/Property3.706e21e632c80af85828.png",
+    "static/media/Flat1.png": "/Tenant-Management-System-FE/static/media/Flat1.accaac3b07fa6962e4dd.png",
+    "static/media/images.jpeg": "/Tenant-Management-System-FE/static/media/images.056fb4da7f2b15383eb6.jpeg",
+    "index.html": "/Tenant-Management-System-FE/index.html",
+    "main.6c6ac573.css.map": "/Tenant-Management-System-FE/static/css/main.6c6ac573.css.map",
+    "main.f180793c.js.map": "/Tenant-Management-System-FE/static/js/main.f180793c.js.map",
+    "10.624daf68.chunk.css.map": "/Tenant-Management-System-FE/static/css/10.624daf68.chunk.css.map",
+    "10.b42e95ef.chunk.js.map": "/Tenant-Management-System-FE/static/js/10.b42e95ef.chunk.js.map",
+    "920.69711d22.chunk.css.map": "/Tenant-Management-System-FE/static/css/920.69711d22.chunk.css.map",
+    "920.0d6a0970.chunk.js.map": "/Tenant-Management-System-FE/static/js/920.0d6a0970.chunk.js.map",
+    "740.9749c99a.chunk.css.map": "/Tenant-Management-System-FE/static/css/740.9749c99a.chunk.css.map",
+    "740.d9817a40.chunk.js.map": "/Tenant-Management-System-FE/static/js/740.d9817a40.chunk.js.map",
+    "453.8d4fb4ac.chunk.js.map": "/Tenant-Management-System-FE/static/js/453.8d4fb4ac.chunk.js.map",
+    "276.c63c367a.chunk.js.map": "/Tenant-Management-System-FE/static/js/276.c63c367a.chunk.js.map",
+    "65.d32656ea.chunk.js.map": "/Tenant-Management-System-FE/static/js/65.d32656ea.chunk.js.map",
+    "978.fdd393f0.chunk.js.map": "/Tenant-Management-System-FE/static/js/978.fdd393f0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c6ac573.css",
+    "static/js/main.f180793c.js"
+  ]
+}
