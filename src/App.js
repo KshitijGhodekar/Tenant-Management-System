@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
+import { Provider } from "react-redux"; 
 import { LoginPage } from "./Pages/Login/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TenantProfile from "./Pages/TenantProfile/TenantProfile";
+import store from "./redux/store"; 
 
 const TenantView = React.lazy(() => import("./Pages/TenantView/TenantView"));
-const LandlordView = React.lazy(() => import("./Pages/LandlordView/LandLoardView") );
-const PaymentPage = React.lazy(() => import("./Pages/PaymentPage/PaymentPage") );
-
+const LandlordView = React.lazy(() => import("./Pages/LandlordView/LandLoardView"));
+const PaymentPage = React.lazy(() => import("./Pages/PaymentPage/PaymentPage"));
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("jwtToken");
@@ -20,8 +20,9 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+    <Provider store={store}> 
+      <BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route
@@ -49,16 +50,17 @@ function App() {
               }
             />
             <Route
-            path="/payment"
-            element={
-              <ProtectedRoute>
-                <PaymentPage />
-              </ProtectedRoute>
-            }
-          />
+              path="/payment"
+              element={
+                <ProtectedRoute>
+                  <PaymentPage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
-      </Suspense>
-    </BrowserRouter>
+        </Suspense>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

@@ -19,3 +19,22 @@ export const login = async (email, password) => {
     throw error;
   }
 };
+
+export const addProperty = async (property) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/properties/addPropertyDetails`, 
+      property, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error adding property:", error.response?.data || error.message);
+    throw error;
+  }
+};

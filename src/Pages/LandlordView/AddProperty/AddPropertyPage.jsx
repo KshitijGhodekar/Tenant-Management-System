@@ -8,180 +8,170 @@ import {
   MenuItem,
   Checkbox,
   FormControlLabel,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-import axios from "axios";
+import { addProperty } from "../../Apis/ApiCall";
 
 const AddPropertyForm = ({ onSubmit }) => {
-    const [properties, setProperties] = useState([
-        {
-          id: 1,
-          name: "Downtown Heights",
-          Rent: 2500,
-          rented: true,
-          type: "Apartment",
-          bedrooms: 2,
-          location: "Downtown",
-          furnished: true,
-        },
-        {
-          id: 2,
-          name: "Sunset Apartments",
-          Rent: 1800,
-          rented: true,
-          type: "Apartment",
-          bedrooms: 1,
-          location: "Sunset",
-          furnished: false,
-        },
-        {
-          id: 3,
-          name: "Green Valley Villas",
-          Rent: 3200,
-          rented: false,
-          type: "House",
-          bedrooms: 3,
-          location: "Green Valley",
-          furnished: true,
-        },
-        {
-          id: 4,
-          name: "Lakeside Homes",
-          Rent: 2750,
-          rented: true,
-          type: "House",
-          bedrooms: 4,
-          location: "Lakeside",
-          furnished: false,
-        },
-      ]);
   const [newProperty, setNewProperty] = useState({
-    propertyTitle: "",
     address: "",
+    propertyTitle: "",
     price: "",
     type: "",
     bedrooms: "",
     bathrooms: "",
     available: false,
+    landlordId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
   });
 
-  const handleAddProperty = () => {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleAddProperty = async () => {
     if (
-      newProperty.name &&
-      newProperty.Rent &&
-      !isNaN(newProperty.Rent) &&
+      newProperty.address &&
+      newProperty.propertyTitle &&
+      newProperty.price &&
+      !isNaN(newProperty.price) &&
       newProperty.type &&
       newProperty.bedrooms &&
-      newProperty.location
+      newProperty.bathrooms &&
+      newProperty.landlordId
     ) {
-      setProperties([
-        ...properties,
-        {
-          ...newProperty,
-          id: properties.length + 1,
-          Rent: Number(newProperty.Rent),
-        },
-      ]);
-      setNewProperty({
-        name: "",
-        Rent: "",
-        rented: false,
-        type: "",
-        bedrooms: "",
-        location: "",
-        furnished: false,
-      });
+      setLoading(true);
+      try {
+        const response = await addProperty(newProperty);
+        setMessage(response.message);
+        setOpenSnackbar(true);
+        setNewProperty({
+          address: "",
+          propertyTitle: "",
+          price: "",
+          type: "",
+          bedrooms: "",
+          bathrooms: "",
+          available: false,
+          landlordId: "",
+        });
+      } catch (err) {
+        setMessage(err.message);
+        setOpenSnackbar(true);
+      } finally {
+        setLoading(false);
+      }
     } else {
-      alert("Please provide valid property details");
+      setMessage("Please provide valid property details.");
+      setOpenSnackbar(true);
     }
   };
 
   return (
     <div className="addProperty">
-    <h3>Add New Property</h3>
-    <TextField
-      label="Property Name"
-      variant="outlined"
-      fullWidth
-      value={newProperty.name}
-      onChange={(e) =>
-        setNewProperty({ ...newProperty, name: e.target.value })
-      }
-    />
-    <TextField
-      label="Rent Amount (€)"
-      variant="outlined"
-      fullWidth
-      type="number"
-      value={newProperty.Rent}
-      onChange={(e) =>
-        setNewProperty({ ...newProperty, Rent: e.target.value })
-      }
-    />
-    <FormControl fullWidth variant="outlined" sx={{ marginTop: 2 }}>
-      <InputLabel>Property Type</InputLabel>
-      <Select
-        value={newProperty.type}
+      <h3>Add New Property</h3>
+      <TextField
+        label="Address"
+        variant="outlined"
+        fullWidth
+        value={newProperty.address}
         onChange={(e) =>
-          setNewProperty({ ...newProperty, type: e.target.value })
+          setNewProperty({ ...newProperty, address: e.target.value })
         }
-        label="Property Type"
-      >
-        <MenuItem value="Apartment">Apartment</MenuItem>
-        <MenuItem value="House">House</MenuItem>
-        <MenuItem value="Condo">Condo</MenuItem>
-      </Select>
-    </FormControl>
-    <TextField
-      label="Number of Bedrooms"
-      variant="outlined"
-      fullWidth
-      type="number"
-      value={newProperty.bedrooms}
-      onChange={(e) =>
-        setNewProperty({ ...newProperty, bedrooms: e.target.value })
-      }
-      sx={{ marginTop: 2 }}
-    />
-    <TextField
-      label="Location"
-      variant="outlined"
-      fullWidth
-      value={newProperty.location}
-      onChange={(e) =>
-        setNewProperty({ ...newProperty, location: e.target.value })
-      }
-      sx={{ marginTop: 2 }}
-    />
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={newProperty.furnished}
+      />
+      <TextField
+        label="Property Title"
+        variant="outlined"
+        fullWidth
+        value={newProperty.propertyTitle}
+        onChange={(e) =>
+          setNewProperty({ ...newProperty, propertyTitle: e.target.value })
+        }
+      />
+      <TextField
+        label="Price (€)"
+        variant="outlined"
+        fullWidth
+        type="number"
+        value={newProperty.price}
+        onChange={(e) =>
+          setNewProperty({ ...newProperty, price: e.target.value })
+        }
+      />
+      <FormControl fullWidth variant="outlined" sx={{ marginTop: 2 }}>
+        <InputLabel>Property Type</InputLabel>
+        <Select
+          value={newProperty.type}
           onChange={(e) =>
-            setNewProperty({
-              ...newProperty,
-              furnished: e.target.checked,
-            })
+            setNewProperty({ ...newProperty, type: e.target.value })
           }
-        />
-      }
-      label="Is Furnished?"
-      sx={{ marginTop: 2 }}
-    />
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={handleAddProperty}
-      disabled={
-        !newProperty.name ||
-        !newProperty.Rent ||
-        !newProperty.type ||
-        !newProperty.bedrooms ||
-        !newProperty.location
-      }
-    >
-      Add Property
-    </Button>
-  </div>
+          label="Property Type"
+        >
+          <MenuItem value="Apartment">Apartment</MenuItem>
+          <MenuItem value="House">House</MenuItem>
+          <MenuItem value="Condo">Condo</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField
+        label="Number of Bedrooms"
+        variant="outlined"
+        fullWidth
+        type="number"
+        value={newProperty.bedrooms}
+        onChange={(e) =>
+          setNewProperty({ ...newProperty, bedrooms: e.target.value })
+        }
+        sx={{ marginTop: 2 }}
+      />
+      <TextField
+        label="Number of Bathrooms"
+        variant="outlined"
+        fullWidth
+        type="number"
+        value={newProperty.bathrooms}
+        onChange={(e) =>
+          setNewProperty({ ...newProperty, bathrooms: e.target.value })
+        }
+        sx={{ marginTop: 2 }}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={newProperty.available}
+            onChange={(e) =>
+              setNewProperty({
+                ...newProperty,
+                available: e.target.checked,
+              })
+            }
+          />
+        }
+        label="Available"
+        sx={{ marginTop: 2 }}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleAddProperty}
+        disabled={loading}
+      >
+        {loading ? "Adding..." : "Add Property"}
+      </Button>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={() => setOpenSnackbar(false)}
+      >
+        <Alert
+          onClose={() => setOpenSnackbar(false)}
+          severity={message.includes("Failed") ? "error" : "success"}
+          sx={{ width: "100%" }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 };
 

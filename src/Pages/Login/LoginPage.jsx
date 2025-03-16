@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./LoginPage.scss";
 import { login } from "../Apis/ApiCall";
+import { loginSuccess } from "../../redux/action";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const validateEmail = (email) => {
@@ -22,9 +25,19 @@ export const LoginPage = () => {
       const token = await login(credentials.email, credentials.password);
       if (token) {
         localStorage.setItem("jwtToken", token);
-        if (credentials.password === "tenant") {
+
+        const role = credentials.password === "tenant" ? "tenant" : "landlord";
+        dispatch(
+          loginSuccess({
+            email: credentials.email,
+            role,
+            token,
+          })
+        );
+
+        if (role === "tenant") {
           navigate("/tenant-view");
-        } else if (credentials.password === "landlord") {
+        } else if (role === "landlord") {
           navigate("/landlord-view");
         }
       } else {
