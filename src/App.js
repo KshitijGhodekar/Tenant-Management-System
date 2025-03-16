@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <Provider store={store}> 
-      <BrowserRouter>
+      <BrowserRouter basename="/Tenant-Management-System-FE">
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<LoginPage />} />
