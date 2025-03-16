@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Tenant-Management-System-FE/static/css/main.6c6ac573.css",
-    "main.js": "/Tenant-Management-System-FE/static/js/main.f180793c.js",
+    "main.js": "/Tenant-Management-System-FE/static/js/main.ff37448a.js",
     "static/css/10.624daf68.chunk.css": "/Tenant-Management-System-FE/static/css/10.624daf68.chunk.css",
     "static/js/10.b42e95ef.chunk.js": "/Tenant-Management-System-FE/static/js/10.b42e95ef.chunk.js",
     "static/css/920.69711d22.chunk.css": "/Tenant-Management-System-FE/static/css/920.69711d22.chunk.css",
@@ -24,7 +24,7 @@
     "static/media/images.jpeg": "/Tenant-Management-System-FE/static/media/images.056fb4da7f2b15383eb6.jpeg",
     "index.html": "/Tenant-Management-System-FE/index.html",
     "main.6c6ac573.css.map": "/Tenant-Management-System-FE/static/css/main.6c6ac573.css.map",
-    "main.f180793c.js.map": "/Tenant-Management-System-FE/static/js/main.f180793c.js.map",
+    "main.ff37448a.js.map": "/Tenant-Management-System-FE/static/js/main.ff37448a.js.map",
     "10.624daf68.chunk.css.map": "/Tenant-Management-System-FE/static/css/10.624daf68.chunk.css.map",
     "10.b42e95ef.chunk.js.map": "/Tenant-Management-System-FE/static/js/10.b42e95ef.chunk.js.map",
     "920.69711d22.chunk.css.map": "/Tenant-Management-System-FE/static/css/920.69711d22.chunk.css.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.6c6ac573.css",
-    "static/js/main.f180793c.js"
+    "static/js/main.ff37448a.js"
   ]
 }
